@@ -2097,6 +2097,13 @@
 		width: 100%;
 	}
 
+	#file {
+		padding: 0.5em 1em;
+		height: 3.5em;
+		border-color: #e6a9ab;
+		box-shadow: 0 0 0 1px #e6a9ab;
+	}
+
 		input[type="text"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
@@ -2251,7 +2258,7 @@
 		input[type="text"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
-		input[type="file"],
+		input[type="file"]:focus,
 		select:focus,
 		textarea:focus {
 			border-color: #e5474b;
