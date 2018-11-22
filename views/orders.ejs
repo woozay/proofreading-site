@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<% include partials/head %>
+</head>
+
+<body>
+	<% include partials/menu %>
+	<section class="section">
+		<div class="container">
+			<table class=table>
+				<thead>
+					<tr>
+						<th>name</th>
+						<th>email</th>
+						<th>file</th>
+						<th>price</th>
+						<th>payment</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if (orders.length > 0) {%>
+						<% orders.forEach(order => { %>
+						<tr>
+							<th><%= order.name %></th>
+							<th><%= order.email %></th>
+							<th><a href="/<%= order.file %>"><%= order.file %></a></th>
+							<th><%= order.price %></th>
+							<th><%= order.payment %></th>
+						</tr>
+						<% }) %>
+					<% } else { %>
+						<p>No orders found</p>
+					<% } %>
+				</tbody>
+			</table>
+			
+
+		</div>
+	</section>
+</body>
+<% include partials/script %>
+</html>

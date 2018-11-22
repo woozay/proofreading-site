@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var path = require('path')
+var path = require('path');
+var orderService = require('../services/orders.service');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -26,8 +27,23 @@ router.post('/', (req, res)=> {
     } else {
       console.log('Unkown Error');
     }
+    orderService.insertOrder(req.body.name, req.body.email, req.file.filename, '25.00', 'none')
+      .then((results)=>{
+        res.redirect('/');
+      })
+      .catch((error)=>{
+        console.log(error);
+        res.redirect('/');
+      })
+    
+  });
+});
 
-    res.redirect('/');
+router.get('/orders', function(req, res, next) {
+  orderService.getOrders().then((results)=>{
+    res.render('orders', { title: 'Express', orders: results });
+  }).catch((error)=>{
+    res.render('orders', { title: 'Express', orders: [] })
   });
 });
 
